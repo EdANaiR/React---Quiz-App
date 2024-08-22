@@ -1,42 +1,207 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Genel düzen ve arka plan */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(to right, #390c63, #feb47b);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/* Uygulama Konteyneri */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #1b257f;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 105%;
+  max-width: 1200px;
+  z-index: 2;
+  margin-left: -3%;
+}
+
+/* Hero Bölümü */
+.hero-section {
+  margin-bottom: 30px;
+}
+
+.hero-title {
+  font-size: 3em;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.hero-description {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+/* Kategori Konteyneri */
+.category-container {
+  width: 100%;
+}
+
+/* Kategori Grid Stilleri */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* Kategori Kartı Stilleri */
+.category-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.category-title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+
+}
+
+.start-button {
+  background-color: #ad4fcd;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   text-align: center;
+  margin-left: 60px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.start-button:hover {
+  background-color: #feb47b;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Yükleniyor Stili */
+.loading {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.sticker {
+  position: absolute;
+  width: 70px;
+  /* Sticker genişliği */
+  height: 70px;
+  /* Sticker yüksekliği */
+  background: url('assets/kitty1.png') no-repeat center center;
+  /* Sticker resmi */
+  background-size: contain;
+  animation: fly 10s infinite;
+  /* Animasyonu uygula */
+}
+
+.sticker1 {
+  top: 5%;
+  left: 20%;
+  animation-duration: 20s;
+}
+
+.sticker2 {
+  top: 55%;
+  left: 15%;
+  animation-duration: 20s;
+}
+
+.sticker3 {
+  top: 58%;
+  left: 79%;
+  animation-duration: 20s;
+}
+
+.sticker4 {
+  top: 98%;
+  left: 20%;
+  animation-duration: 20s;
+}
+
+.sticker5 {
+  top: 5%;
+  left: 80%;
+  animation-duration: 20s;
+}
+
+.sticker6 {
+  top: 99%;
+  left: 75%;
+  animation-duration: 20s;
+}
+
+.sticker7 {
+  top: 75%;
+  left: 92%;
+  animation-duration: 20s;
+}
+
+.sticker8 {
+  top: 25%;
+  left: 3%;
+  animation-duration: 20s;
+}
+
+.sticker9 {
+  top: 35%;
+  left: 89%;
+  animation-duration: 20s;
+}
+
+.sticker10 {
+  top: 87%;
+  left: 3%;
+  animation-duration: 20s;
+}
+
+.sticker11 {
+  top: 2%;
+  left: 50%;
+  animation-duration: 20s;
+}
+
+.sticker12 {
+  top: 100%;
+  left: 50%;
+  animation-duration: 20s;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    ;
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    transform: translate(10px, -80px) rotate(180deg);
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  100% {
+    transform: translate(0, 0) rotate(360deg);
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

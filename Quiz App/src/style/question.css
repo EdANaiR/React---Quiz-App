@@ -1,149 +1,165 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(to right, #390c63, #feb47b);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(to right, #390c63, #feb47b);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
 }
-
 
 .question-container {
-    width: 100%;
-    max-width: 800px;
-    background: #ffffff;
-    color: #1b257f;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  width: 100%;
+  max-width: 800px;
+  background: #ffffff;
+  color: #1b257f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 
-    margin: 0 auto;
-
+  margin: 0 auto;
 }
-
 
 .question-text {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #333;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #333;
 }
-
 
 .options-container {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-
 .option-button {
-    display: block;
+  display: block;
 
-    margin: 10px auto;
+  margin: 10px auto;
 
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 80%;
-
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 80%;
 }
 
 .option-button:hover {
-    background-color: #e0e0e0;
+  background-color: #e0e0e0;
 
-    transform: scale(1.05);
-
+  transform: scale(1.05);
 }
 
-
 .next-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ad4fcd;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ad4fcd;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .next-button:hover {
-    background-color: #feb47b;
-
+  background-color: #feb47b;
 }
-
 
 .loading {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #f8f2f2ae;
-    text-align: center;
-
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #f8f2f2ae;
+  text-align: center;
 }
-
 
 .bslik {
-    font-size: 1.2em;
-    color: #1b257f;
-    text-align: center;
-    margin-top: 30px;
+  font-size: 1.2em;
+  color: #1b257f;
+  text-align: center;
+  margin-top: 30px;
 
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    text-transform: uppercase;
+  text-transform: uppercase;
 
-    letter-spacing: 1px;
+  letter-spacing: 1px;
 
-    background: linear-gradient(90deg, #230418, #3d666c);
+  background: linear-gradient(90deg, #230418, #3d666c);
 
-    -webkit-background-clip: text;
+  -webkit-background-clip: text;
 
-    background-clip: text;
+  background-clip: text;
 
-    -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.445);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.445);
 
-    border-radius: 8px;
+  border-radius: 8px;
 
-    padding: 10px;
+  padding: 10px;
 
-    max-width: 80%;
+  max-width: 80%;
 
-    margin: -90px auto 40px;
+  margin: -90px auto 40px;
 
-    margin-left: 10%;
+  margin-left: 10%;
 }
 
-
-
 .option-button {
-    position: relative;
-
+  position: relative;
 }
 
 .correct-icon,
 .incorrect-icon {
-    position: absolute;
-    right: 10px;
-    font-size: 1.2em;
+  position: absolute;
+  right: 10px;
+  font-size: 1.2em;
 }
 
 .correct-icon {
-    color: green;
+  color: green;
 }
 
 .incorrect-icon {
-    color: red;
+  color: red;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.next-button,
+.home-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.next-button:hover,
+.home-button:hover {
+  background-color: #45a049;
+}
+
+.home-button {
+  background-color: #3498db;
+}
+
+.home-button:hover {
+  background-color: #2980b9;
 }

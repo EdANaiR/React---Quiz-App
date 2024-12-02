@@ -1,118 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import '../style/question.css';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchQuestionsByCategory } from "../api";
+import "../style/question.css";
 
-const Question = () => {
-    const { category } = useParams();
-    const [questions, setQuestions] = useState([]);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
-    const [selectedOption, setSelectedOption] = useState(null); // Seçilen seçeneği tutar
-    const [correctAnswer, setCorrectAnswer] = useState(null);  // Doğru cevabı tutar
+function Question() {
+  const { category } = useParams();
+  const navigate = useNavigate();
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
 
-    useEffect(() => {
-        const fetchQuestions = async () => {
-            try {
-                const encodedCategory = encodeURIComponent(category);
-                const response = await axios.get(`http://localhost:5230/api/quiz/category/${encodedCategory}`);
-                setQuestions(response.data);
-            } catch (error) {
-                console.error('API Error:', error.response ? error.response.data : error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchQuestions();
-    }, [category]);
-
-    const handleOptionClick = (option) => {
-        if (selectedOption !== null) return;
-
-        const currentQuestion = questions[currentQuestionIndex];
-        setSelectedOption(option); // Seçilen seçeneği kaydeder
-        setCorrectAnswer(currentQuestion.correctAnswer); // Doğru cevabı kaydeder
+  useEffect(() => {
+    const loadQuestions = () => {
+      const fetchedQuestions = fetchQuestionsByCategory(category);
+      setQuestions(fetchedQuestions);
     };
 
-    const handleNextQuestion = () => {
-        if (currentQuestionIndex < questions.length - 1) {
-            setCurrentQuestionIndex(prevIndex => prevIndex + 1);
-            setSelectedOption(null);
-            setCorrectAnswer(null);
-        } else {
-            alert('Bu kategori için tüm soruları tamamladınız!');
-        }
-    };
+    loadQuestions();
+  }, [category]);
 
-    if (loading) {
-        return <p className="loading">Yükleniyor...</p>;
-    }
-
-    if (questions.length === 0) {
-        return <p>Bu kategoride soru bulunamadı.</p>;
-    }
+  const handleOptionClick = (option) => {
+    if (selectedOption !== null) return;
 
     const currentQuestion = questions[currentQuestionIndex];
-    const { options } = currentQuestion;
+    setSelectedOption(option);
+    setCorrectAnswer(currentQuestion.correctAnswer);
+  };
 
-    return (
-        <div>
-            <div className="bslik">
-                <h2>{category} Kategorisindeki Sorular</h2>
-            </div>
-            <div className="question-container">
-                <p className="question-text">{currentQuestion.questionText}</p>
-                <div className="options-container">
-                    {options.map((option, index) => {
-                        let buttonClass = '';
-                        let icon = null;
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      setSelectedOption(null);
+      setCorrectAnswer(null);
+    } else {
+      alert("Bu kategori için tüm soruları tamamladınız!");
+    }
+  };
 
-                        if (selectedOption !== null) {
-                            if (option === correctAnswer) {
+  const handleNavigateHome = () => {
+    navigate("/");
+  };
 
-                                buttonClass = 'correct';
-                                icon = <span className="icon correct-icon">✔️</span>;
-                            }
-                            if (option === selectedOption && option !== correctAnswer) {
+  if (questions.length === 0) {
+    return <p>Bu kategoride soru bulunamadı.</p>;
+  }
 
-                                buttonClass = 'incorrect';
-                                icon = <span className="icon incorrect-icon">❌</span>;
-                            }
-                        }
+  const currentQuestion = questions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
-                        return (
-                            <button
-                                key={index}
-                                className={`option-button ${buttonClass}`}
-                                onClick={() => handleOptionClick(option)}
-                                disabled={selectedOption !== null}
-                            >
-                                {option}
-                                {icon}
-                            </button>
-                        );
-                    })}
-                </div>
-                <button onClick={handleNextQuestion} className="next-button">
-                    Sonraki Soru
-                </button>
-            </div>
+  return (
+    <div>
+      <div className="bslik">
+        <h2>{category} Kategorisindeki Sorular</h2>
+      </div>
+      <div className="question-container">
+        <p className="question-text">{currentQuestion.questionText}</p>
+        <div className="options-container">
+          {currentQuestion.options.map((option, index) => {
+            let buttonClass = "";
+            let icon = null;
 
-            <div className="sticker sticker1"></div>
-            <div className="sticker sticker2"></div>
-            <div className="sticker sticker3"></div>
-            <div className="sticker sticker4"></div>
-            <div className="sticker sticker5"></div>
-            <div className="sticker sticker6"></div>
-            <div className="sticker sticker7"></div>
-            <div className="sticker sticker8"></div>
-            <div className="sticker sticker9"></div>
-            <div className="sticker sticker10"></div>
-            <div className="sticker sticker11"></div>
-            <div className="sticker sticker12"></div>
+            if (selectedOption !== null) {
+              if (option === correctAnswer) {
+                buttonClass = "correct";
+                icon = <span className="icon correct-icon">✔️</span>;
+              }
+              if (option === selectedOption && option !== correctAnswer) {
+                buttonClass = "incorrect";
+                icon = <span className="icon incorrect-icon">❌</span>;
+              }
+            }
+
+            return (
+              <button
+                key={index}
+                className={`option-button ${buttonClass}`}
+                onClick={() => handleOptionClick(option)}
+                disabled={selectedOption !== null}
+              >
+                {option}
+                {icon}
+              </button>
+            );
+          })}
         </div>
-    );
-};
+        <div className="button-container">
+          {isLastQuestion ? (
+            <button onClick={handleNavigateHome} className="home-button">
+              Kategorilere dön
+            </button>
+          ) : (
+            <button onClick={handleNextQuestion} className="next-button">
+              Sonraki Soru
+            </button>
+          )}
+        </div>
+      </div>
+      {[...Array(12)].map((_, i) => (
+        <div key={i} className={`sticker sticker${i + 1}`}></div>
+      ))}
+    </div>
+  );
+}
 
 export default Question;

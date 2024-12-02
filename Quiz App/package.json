@@ -1,5 +1,5 @@
 {
-  "homepage": "https://EdANaiR.github.io/React-Quiz-App",
+  "homepage": "https://edanair.github.io/React-Quiz-App/",
   "name": "quiz-app",
   "private": true,
   "version": "0.0.0",
@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.7.4",

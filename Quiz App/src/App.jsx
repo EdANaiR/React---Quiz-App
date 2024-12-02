@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
-import Home from './pages/Home';
-import Question from './components/Question';
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import Question from "./components/Question";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/React-Quiz-App">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz/:category" element={<Question />} />
@@ -15,6 +14,5 @@ const App = () => {
     </Router>
   );
 };
-
 
 export default App;

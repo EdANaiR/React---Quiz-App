@@ -1,12 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Question from "./components/Question";
 
 const App = () => {
   return (
-    <Router basename="/React-Quiz-App">
+    <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quiz/:category" element={<Question />} />

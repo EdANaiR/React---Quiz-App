@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { fetchQuestionsByCategory } from "../api";
+import Confetti from "./Confetti";
 import "../style/question.css";
 
 function Question() {
@@ -10,6 +11,8 @@ function Question() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
 
   useEffect(() => {
     const loadQuestions = () => {
@@ -26,6 +29,15 @@ function Question() {
     const currentQuestion = questions[currentQuestionIndex];
     setSelectedOption(option);
     setCorrectAnswer(currentQuestion.correctAnswer);
+
+    const isCorrect = option === currentQuestion.correctAnswer;
+    setIsAnswerCorrect(isCorrect);
+
+    if (isCorrect) {
+      // Doğru cevap animasyonu ve konfeti
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 2500);
+    }
   };
 
   const handleNextQuestion = () => {
@@ -33,8 +45,14 @@ function Question() {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setSelectedOption(null);
       setCorrectAnswer(null);
+      setIsAnswerCorrect(false);
     } else {
-      alert("Bu kategori için tüm soruları tamamladınız!");
+      // Son soruda konfeti göster
+      setShowConfetti(true);
+      setTimeout(() => {
+        alert("Bu kategori için tüm soruları tamamladınız!");
+        navigate("/");
+      }, 2000);
     }
   };
 
@@ -51,6 +69,7 @@ function Question() {
 
   return (
     <div>
+      <Confetti isVisible={showConfetti} />
       <div className="bslik">
         <h2>{category} Kategorisindeki Sorular</h2>
       </div>
@@ -86,11 +105,10 @@ function Question() {
           })}
         </div>
         <div className="button-container">
-          {isLastQuestion ? (
-            <button onClick={handleNavigateHome} className="home-button">
-              Kategorilere dön
-            </button>
-          ) : (
+          <button onClick={handleNavigateHome} className="home-button">
+            Kategorilere dön
+          </button>
+          {selectedOption !== null && !isLastQuestion && (
             <button onClick={handleNextQuestion} className="next-button">
               Sonraki Soru
             </button>

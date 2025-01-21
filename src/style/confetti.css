@@ -1,0 +1,125 @@
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #f00;
+  z-index: 1000;
+  top: -10px;
+  will-change: transform;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translateY(25vh) rotate(90deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateY(50vh) rotate(180deg);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translateY(75vh) rotate(270deg);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.confetti-left {
+  animation: confettiExplodeLeft linear forwards;
+}
+
+.confetti-right {
+  animation: confettiExplodeRight linear forwards;
+}
+
+@keyframes confettiExplodeLeft {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translate(200px, -100px) rotate(90deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate(400px, -50px) rotate(180deg);
+    opacity: 0.7;
+  }
+
+  75% {
+    transform: translate(600px, 100px) rotate(270deg);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(800px, 0) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes confettiExplodeRight {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: translate(-200px, -100px) rotate(-90deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translate(-400px, -50px) rotate(-180deg);
+    opacity: 0.7;
+  }
+
+  75% {
+    transform: translate(-600px, 100px) rotate(-270deg);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(-800px, 0) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+/* Parıltı efekti */
+.confetti::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 100%
+  );
+  animation: sparkle 1s linear infinite;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
